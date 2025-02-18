@@ -3,7 +3,7 @@ name: Public Hello World
 on:
     push:
         branches:
-            -main
+            - main
 
 jobs:
     run-public-docker:
@@ -14,4 +14,4 @@ jobs:
           run: docker pull tillsat/public-hello:latest
         
         - name: Run Container
-          run: docker run --rm tillsat/public-hello:lastet
+          run: docker run --rm tillsat/public-hello:latest
