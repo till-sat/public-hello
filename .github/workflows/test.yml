@@ -1,0 +1,17 @@
+name: Public Hello World
+
+on:
+    push:
+        branches:
+            -main
+
+jobs:
+    run-public-docker:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Pull Public Docker Image
+          run: docker pull tillsat/public-hello:latest
+        
+        - name: Run Container
+          run: docker run --rm tillsat/public-hello:lastet
