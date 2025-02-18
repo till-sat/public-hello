@@ -10,8 +10,15 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+        - uses: actions/checkout@v4           
+
         - name: Pull Public Docker Image
-          run: docker pull tillsat/public-hello:latest
+          id: pull_container_image
+          run: |
+            docker pull tillsat/public-hello:latest
         
-        - name: Run Container
-          run: docker run --rm tillsat/public-hello:latest
+        - name: Build Files
+          if: steps.pull_container_image.outcome == 'success'
+          run: |
+            docker run --rm -v {{ github.workspace }}:/build tillsat/public-hello:latest \
+            /bin/sh -c "make"
